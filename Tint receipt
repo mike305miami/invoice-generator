@@ -1,0 +1,47 @@
+from fpdf import FPDF
+
+# Create a PDF invoice
+class InvoicePDF(FPDF):
+    def header(self):
+        self.set_font("Arial", "B", 14)
+        self.cell(0, 10, "Invoice", ln=True, align="L")
+        self.set_font("Arial", "", 12)
+        self.cell(0, 10, "Elmer Mobile Tints", ln=True, align="L")
+        self.cell(0, 10, "Phone: (305) 726-5718", ln=True, align="L")
+        self.ln(5)
+
+    def footer(self):
+        self.set_y(-15)
+        self.set_font("Arial", "I", 8)
+        self.cell(0, 10, "Thank you for choosing Elmer Mobile Tints!", 0, 0, "C")
+
+# Initialize PDF
+pdf = InvoicePDF()
+pdf.add_page()
+
+# Invoice details
+pdf.set_font("Arial", "", 12)
+pdf.cell(0, 10, "Invoice Number: 2141", ln=True)
+pdf.cell(0, 10, "Invoice Date: December 7, 2024", ln=True)
+pdf.cell(0, 10, "Customer Name: Mike Castillo", ln=True)
+pdf.cell(0, 10, "Vehicle: 2024 Nissan Sentra", ln=True)
+pdf.ln(10)
+
+# Service description
+pdf.set_font("Arial", "B", 12)
+pdf.cell(0, 10, "Description of Services", ln=True)
+pdf.set_font("Arial", "", 12)
+pdf.cell(0, 10, "- Window tint installation (30% VLT front and rear)", ln=True)
+pdf.cell(0, 10, "- Vehicle: 2024 Nissan Sentra", ln=True)
+pdf.ln(10)
+
+# Payment summary
+pdf.set_font("Arial", "B", 12)
+pdf.cell(0, 10, "Total Paid (Cash): $180.00", ln=True)
+pdf.set_font("Arial", "", 12)
+pdf.cell(0, 10, "Payment Method: Cash", ln=True)
+pdf.cell(0, 10, "Payment Status: Paid in Full", ln=True)
+pdf.ln(10)
+
+# Output the PDF
+pdf.output("Invoice_2141_Mike_Castillo_Cash.pdf")
